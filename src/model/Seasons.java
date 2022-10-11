@@ -1,5 +1,6 @@
-package model;
+package model; // Tha package where this entity is located at
 
+// Including the needed imports
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "seasons")
 public class Seasons {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "SEASON_ID")
@@ -50,7 +52,7 @@ public class Seasons {
 	}
 	
 	/**
-	 * This is a helper constructor that the season number and the season name of each record.
+	 * This is a helper constructor that sets only the season number and the season name of each record.
 	 * @param number - the season number
 	 * @param name - the season's name
 	 */
@@ -95,8 +97,8 @@ public class Seasons {
 	}
 
 	/**
-	 * This is a helper printing method used for debugging purposes.
-	 * @return the details for each specified field in this entity
+	 * This is a helper method used for debugging purposes.
+	 * @return the details for each specified field in this entity in a single line
 	 */
 	@Override
 	public String toString() {

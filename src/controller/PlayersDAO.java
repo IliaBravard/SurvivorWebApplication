@@ -1,6 +1,5 @@
-package controller; // The package where this DAO is located at
+package controller;
 
-// Including the needed imports
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,48 +7,47 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-// Provides access to the "Seasons" entity
-import model.Seasons;
+// Provides access to the "Players" entity
+import model.Players;
 
-public class SeasonsDAO {
+// The package where this DAO is located at
 
-	// Creating a global instance of the entity manager factory to be used for
-	// database transations
+public class PlayersDAO {
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SurvivorWebApplication");
-
+	
 	/**
-	 * This method inserts a season record to the "seasons" table.
+	 * This method inserts a player record to the "players" table.
 	 * 
-	 * @param season - the season to be inserted in the table
+	 * @param player - the player to be inserted in the table
 	 */
-	public void insertSeason(Seasons season) {
+	public void insertPlayer(Players player) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(season);
+		em.persist(player);
 		em.getTransaction().commit();
 		em.close();
 	}
 
 	/**
-	 * This method traverses the "seasons" table's records and adds them to a
+	 * This method traverses the "players" table's records and adds them to a
 	 * generic list.
 	 * 
 	 * @return a list populated with all existing records in the table
 	 */
-	public List<Seasons> showAllSeasons() {
+	public List<Players> showAllPlayers() {
 		EntityManager em = emfactory.createEntityManager();
 		@SuppressWarnings("unchecked") // Suppresses the warning for the JPQL statement
-		List<Seasons> allSeasons = em.createQuery("SELECT s FROM Seasons s").getResultList();
-		return allSeasons;
+		List<Players> allPlayers = em.createQuery("SELECT p FROM Players p").getResultList();
+		return allPlayers;
 	}
-
+	
 	/**
-	 * This method searches for a particular season record from the "seasons" table
+	 * This method searches for a particular player record from the "players" table
 	 * and deletes it permanently from the database.
 	 * 
-	 * @param season - the season record to be removed from the table
+	 * @param player - the player record to be removed from the table
 	 */
-	public void deleteSeason(Seasons season) {
+	public void deletePlayer(Players player) {
 		// To avoid magic numbers
 		final int ONE_RESULT = 1;
 
@@ -57,49 +55,49 @@ public class SeasonsDAO {
 		em.getTransaction().begin();
 
 		// Using a prameterized query for additional protection
-		TypedQuery<Seasons> typedQuery = em.createQuery(
-				"SELECT	s from Seasons s WHERE s.seasonNum = :selectedSeasonNum	AND	s.seasonName = :selectedName",
-				Seasons.class);
+		TypedQuery<Players> typedQuery = em.createQuery(
+				"SELECT	p from Players p WHERE p.firstName = :selectedFirstName	AND	p.lastName = :selectedLastName",
+				Players.class);
 
 		// Defining the parameters
-		typedQuery.setParameter("selectedSeasonNum", season.getSeasonNum());
-		typedQuery.setParameter("selectedName", season.getSeasonName());
+		typedQuery.setParameter("selectedFirstName", player.getFirstName());
+		typedQuery.setParameter("selectedLastName", player.getLastName());
 
 		// Getting only a single season/record to be removed
 		typedQuery.setMaxResults(ONE_RESULT);
 
 		// Save the foung record as a new object
-		Seasons toDelete = typedQuery.getSingleResult();
+		Players toDelete = typedQuery.getSingleResult();
 
 		// Persist and remove the object/record
 		em.remove(toDelete);
 		em.getTransaction().commit();
 		em.close();
 	}
-
+	
 	/**
-	 * This method finds a season record from the "seasons" table by using the
+	 * This method finds a player record from the "players" table by using the
 	 * primary key of each row as the search parameter.
 	 * 
-	 * @param season - the ID number of each record
-	 * @return the found season record in the table
+	 * @param player - the ID number of each record
+	 * @return the found player record in the table
 	 */
-	public Seasons findSeason(int season) {
+	public Players findPlayer(int player) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 
 		// Finding the season to be updated by its ID number
-		Seasons toEdit = em.find(Seasons.class, season);
+		Players toEdit = em.find(Players.class, player);
 		em.close();
 		return toEdit;
 	}
-
+	
 	/**
-	 * This method updates a season record from the "seasons" table.
+	 * This method updates a player record from the "players" table.
 	 * 
-	 * @param toEdit - the season record to be updated from the table
+	 * @param toEdit - the player record to be updated from the table
 	 */
-	public void updateSeason(Seasons toEdit) {
+	public void updatePlayer(Players toEdit) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 
