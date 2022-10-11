@@ -49,6 +49,16 @@ public class Seasons {
 		setFirstAired(startDate);
 	}
 	
+	/**
+	 * This is a helper constructor that the season number and the season name of each record.
+	 * @param number - the season number
+	 * @param name - the season's name
+	 */
+	public Seasons(int number, String name) {
+		setSeasonNum(number);
+		setSeasonName(name);
+	}
+	
 	// Declaring the needed accessors and mutators
 	public int getSeasonId() {
 		return seasonId;
@@ -90,9 +100,7 @@ public class Seasons {
 	 */
 	@Override
 	public String toString() {
-		return "Seasons [Season # = " + seasonNum + ", Name = " + seasonName + ", Winner = " + seasonWinner
-				+ ", First Aired = " + firstAired + "]";
+		return "Seasons [ID: " + seasonId + " Season #" + seasonNum + ", Name: " + seasonName + ", Winner: " + seasonWinner
+				+ ", First Aired: " + firstAired + "]";
 	}
-
-	
 }

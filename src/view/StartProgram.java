@@ -1,6 +1,7 @@
 package view;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 import controller.SeasonsDAO;
@@ -32,102 +33,111 @@ public class StartProgram {
 			sh.insertSeason(toAdd);
 		}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		private static void viewTheSeasons() {
+			List<Seasons> allSeasons = sh.showAllSeasons();
+			
+			// Using an enhanced for loop to traverse the list and return each record
+			for(Seasons traversedRecord : allSeasons) {
+				System.out.println(traversedRecord.toString());
+			}
+		}
 		
 		private static void deleteASeason() {
-			System.out.print("Enter the store to delete: ");
-			String store = in.nextLine();
-			System.out.print("Enter the item to delete: ");
-			String item = in.nextLine();
-
-		}
-
-		private static void editASeason() {
-			System.out.println("How would you like to search? ");
-			System.out.println("1 : Search by Store");
-			System.out.println("2 : Search by Item");
-			int searchBy = in.nextInt();
+			System.out.print("Enter the season number to be removed: ");
+			int seasonNum = in.nextInt();
 			in.nextLine();
-			/*List<ListItem> foundItems;
-			if (searchBy == 1) {
-				System.out.print("Enter the store name: ");
-				String storeName = in.nextLine();
-				
-			} else {
-				System.out.print("Enter the item: ");
-				String itemName = in.nextLine();
-				
-
-			}
-
-			if (!foundItems.isEmpty()) {
+			System.out.print("Enter the season's name: ");
+			String seasonName = in.nextLine();
+			
+			Seasons toDelete = new Seasons(seasonNum, seasonName);
+			sh.deleteSeason(toDelete);
+		}
+		
+		private static void editASeason() {
+			Seasons s = new Seasons();
+			Seasons foundSeason;
+			
+			System.out.print("Enter the ID of the record you would like to delete: ");
+			int seasonId = in.nextInt();
+			
+			foundSeason = sh.findSeason(seasonId);
+			
+			if (foundSeason != null ) {
 				System.out.println("Found Results.");
-				for (ListItem l : foundItems) {
-					System.out.println(l.getId() + " : " + l.toString());
-				}
-				System.out.print("Which ID to edit: ");
-				int idToEdit = in.nextInt();
+				
+				System.out.println(s.toString());
 
-				ListItem toEdit = lih.searchForItemById(idToEdit);
-				System.out.println("Retrieved " + toEdit.getItem() + " from " + toEdit.getStore());
-				System.out.println("1 : Update Store");
-				System.out.println("2 : Update Item");
-				int update = in.nextInt();
+				Seasons toEdit = sh.findSeason(seasonId);
+				
+				
+				System.out.println("1 : Update the season number");
+				System.out.println("2 : Update the season name");
+				System.out.println("3 : Update the season winner");
+				System.out.println("4 : Update the season's start date");
+				
+				int choice = in.nextInt();
 				in.nextLine();
 
-				if (update == 1) {
-					System.out.print("New Store: ");
-					String newStore = in.nextLine();
-					toEdit.setStore(newStore);
-				} else if (update == 2) {
-					System.out.print("New Item: ");
-					String newItem = in.nextLine();
-					toEdit.setItem(newItem);
+				
+				switch(choice) {
+				case 1:
+					System.out.print("New Number: ");
+					int newNumber = in.nextInt();
+					toEdit.setSeasonNum(newNumber);
+					break;
+				case 2:
+					System.out.print("New Name: ");
+					String newName = in.nextLine();
+					toEdit.setSeasonName(newName);
+					break;
+				case 3:
+					System.out.print("New Winner: ");
+					String newWinner = in.nextLine();
+					toEdit.setSeasonName(newWinner);
+					break;
+				case 4:
+					System.out.print("New Start Date: ");
+					String newDate = in.nextLine();
+					toEdit.setSeasonName(newDate);
+					break;
 				}
 
-				lih.updateItem(toEdit);
+				sh.updateSeason(toEdit);
 
 			} else {
 				System.out.println("---- No results found");
 			}
-*/
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		public static void main(String[] args) {
 			runMenu();
@@ -164,10 +174,6 @@ public class StartProgram {
 
 			}
 
-		}
-
-		private static void viewTheSeasons() {
-			
 		}
 
 	}
