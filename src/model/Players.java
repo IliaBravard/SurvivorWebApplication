@@ -44,16 +44,6 @@ public class Players {
 		setLastName(lName);
 		setAge(age);
 	}
-	
-	/**
-	 * This is a helper constructor that sets the player's first and last names.
-	 * @param fName - the player's first name
-	 * @param lName - the player's last name
-	 */
-	public Players(String fName, String lName) {
-		setFirstName(fName);
-		setLastName(lName);
-	}
 
 	// Generating the needed accessors and mutators
 	public int getPlayerId() {

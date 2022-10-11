@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import controller.PlayersDAO;
 import model.Players;
-import model.Seasons;
 
 public class playersTester {
 

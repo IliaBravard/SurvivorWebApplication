@@ -51,16 +51,6 @@ public class Seasons {
 		setFirstAired(startDate);
 	}
 	
-	/**
-	 * This is a helper constructor that sets only the season number and the season name of each record.
-	 * @param number - the season number
-	 * @param name - the season's name
-	 */
-	public Seasons(int number, String name) {
-		setSeasonNum(number);
-		setSeasonName(name);
-	}
-	
 	// Declaring the needed accessors and mutators
 	public int getSeasonId() {
 		return seasonId;

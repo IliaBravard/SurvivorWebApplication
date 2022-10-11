@@ -58,12 +58,11 @@ public class SeasonsDAO {
 
 		// Using a prameterized query for additional protection
 		TypedQuery<Seasons> typedQuery = em.createQuery(
-				"SELECT	s from Seasons s WHERE s.seasonNum = :selectedSeasonNum	AND	s.seasonName = :selectedName",
+				"SELECT	s from Seasons s WHERE s.seasonNum = :selectedSeasonNum",
 				Seasons.class);
 
 		// Defining the parameters
 		typedQuery.setParameter("selectedSeasonNum", season.getSeasonNum());
-		typedQuery.setParameter("selectedName", season.getSeasonName());
 
 		// Getting only a single season/record to be removed
 		typedQuery.setMaxResults(ONE_RESULT);
@@ -89,9 +88,9 @@ public class SeasonsDAO {
 		em.getTransaction().begin();
 
 		// Finding the season to be updated by its ID number
-		Seasons toEdit = em.find(Seasons.class, season);
+		Seasons toEditOrDelete = em.find(Seasons.class, season);
 		em.close();
-		return toEdit;
+		return toEditOrDelete;
 	}
 
 	/**
