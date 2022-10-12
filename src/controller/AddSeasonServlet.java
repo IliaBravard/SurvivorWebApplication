@@ -55,7 +55,7 @@ public class AddSeasonServlet extends HttpServlet {
 		sh.insertSeason(toAdd);
 		
 		// Forwarding the request to the appropriate page
-		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+		getServletContext().getRequestDispatcher("/addSeason.html").forward(request, response);
 	}
 
 }

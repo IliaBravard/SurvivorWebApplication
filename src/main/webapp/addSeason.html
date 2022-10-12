@@ -5,18 +5,18 @@
     <title>Add A Season</title>
   </head>
   <body>
-    <form action="addSeasonServlet" method="post">
+    <form action="addSeasonServlet" method="post" autocomplete="off">
       <p>Season Number:</p>
-      <input type="number" name="number" min="1" max="42" />
+      <input required type="number" name="number" min="1" max="42" />
 
       <p>Season Name:</p>
-      <input type="text" name="name" />
+      <input required type="text" name="name" />
 
       <p>Season Winner:</p>
-      <input type="text" name="winner" />
+      <input required type="text" name="winner" />
 
       <p>First Aired On:</p>
-      <input type="date" name="date" /><br />
+      <input required type="date" name="date" /><br />
 
       <input type="submit" value="Add Item" />
     </form>
