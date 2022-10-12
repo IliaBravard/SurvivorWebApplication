@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Add A Season</title>
+  </head>
+  <body>
+    <form action="addSeasonServlet" method="post">
+      <p>Season Number:</p>
+      <input type="number" name="number" min="1" max="42" />
+
+      <p>Season Name:</p>
+      <input type="text" name="name" />
+
+      <p>Season Winner:</p>
+      <input type="text" name="winner" />
+
+      <p>First Aired On:</p>
+      <input type="date" name="date" /><br />
+
+      <input type="submit" value="Add Item" />
+    </form>
+    <br />
+    <a href="viewAllSeasonsServlet">View All Seasons</a>
+  </body>
+</html>
