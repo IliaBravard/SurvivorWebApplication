@@ -3,7 +3,6 @@ package controller; // The package where this servlet is located at
 // Including the needed imports
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,6 +26,7 @@ public class AddSeasonServlet extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public AddSeasonServlet() {
+		super();
 	}
 
 	/**
@@ -47,8 +47,7 @@ public class AddSeasonServlet extends HttpServlet {
 		
 		// Parsing some of it to be acceptable for the constructor
 		int seasonNum = Integer.parseInt(seasonStringNum);
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("mm/dd/yyyy");
-		LocalDate firstAired = LocalDate.parse(dateString, format);
+		LocalDate firstAired = LocalDate.parse(dateString);
 		
 		// Actually adding the new season
 		Seasons toAdd = new Seasons(seasonNum, seasonName, seasonWinner, firstAired);
