@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<!--
+	Author: Max Chance
+	Date: 10/12/2022
+	Course: Advanced Java Programming
+ -->
+
+<html>
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Add A Player</title>
+  </head>
+  <body>
+    <form action="addPlayerServlet" method="post" autocomplete="off">
+    
+      <p>First Name:</p>
+      <input required type="text" name="fName" />
+
+      <p>Last Name:</p>
+      <input required type="text" name="lName" />
+
+      <p>Age of Casting:</p>
+      <input required type="number" name="castAge" /><br />
+
+      <input type="submit" value="Add the Player" />
+    </form>
+    <br />
+    <a href="viewAllPlayersServlet">View All Players</a>
+  </body>
+</html>
