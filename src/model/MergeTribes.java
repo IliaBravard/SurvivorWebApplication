@@ -10,31 +10,33 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "mtribes")
 public class MergeTribes {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TRIBE_ID")
 	private int tribeId; // The primary key
-	
+
 	@Column(name = "TRIBE_NAME")
 	private String tribeName; // The merge tribe's name
-	
+
 	@Column(name = "NAME_MEANING")
 	private String meaning; // The meaning of the merge tribe's name
-	
+
 	@Column(name = "PLAYERS_CNT")
 	private int numOfPlayers; // The number of players in the merge tribe
-	
+
 	/**
 	 * This is the default, no argument constructor.
 	 */
 	public MergeTribes() {
 	}
-	
+
 	/**
-	 * This is the nondefault constructor that sets the fields of this entity and auto-generates the primary key.
-	 * @param name - the merge tribes name
-	 * @param meaning - the meaning of the tribe's name
+	 * This is the nondefault constructor that sets the fields of this entity and
+	 * auto-generates the primary key.
+	 * 
+	 * @param name         - the merge tribes name
+	 * @param meaning      - the meaning of the tribe's name
 	 * @param playersCount - the number of players in the tribe
 	 */
 	public MergeTribes(String name, String meaning, int playersCount) {
@@ -78,11 +80,12 @@ public class MergeTribes {
 
 	/**
 	 * This is a helper method used for debugging purposes.
+	 * 
 	 * @return the details for each specified field in this entity in a single line
 	 */
 	@Override
 	public String toString() {
-		return "MergeTribes [ID: " + tribeId + ", Name: " + tribeName + ", Meaning: " + meaning
-				+ ", Players Count: " + numOfPlayers + "]";
+		return "MergeTribes [ID: " + tribeId + ", Name: " + tribeName + ", Meaning: " + meaning + ", Players Count: "
+				+ numOfPlayers + "]";
 	}
 }

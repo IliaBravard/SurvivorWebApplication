@@ -5,7 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+import controller.MergeTribesDAO;
 import controller.SeasonsDAO;
+import model.MergeTribes;
 import model.Seasons;
 
 public class seasonsTester {
@@ -98,8 +100,23 @@ public class seasonsTester {
 	}
 
 	public static void main(String[] args) {
-		runMenu();
+		// runMenu();
 
+		// Tests for relationships
+		MergeTribes chabogoMogo = new MergeTribes("ChabogoMogo", "Portmanteau of Chapera, Saboga, and Mogo Mogo", 9);
+		MergeTribesDAO mth = new MergeTribesDAO();
+		
+		mth.insertMergeTribe(chabogoMogo);
+		
+		SeasonsDAO sh = new SeasonsDAO();
+		Seasons allStars = new Seasons(8, "All Stars", "Amber Brkich", LocalDate.now(), chabogoMogo);
+		
+		sh.insertSeason(allStars);
+		List<Seasons> allSeasons = sh.showAllSeasons();
+		
+		for(Seasons s : allSeasons) {
+			System.out.println(s.toString());
+		}
 	}
 
 	public static void runMenu() {

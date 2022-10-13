@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +33,10 @@ public class Seasons {
 	@Column(name = "SEASON_FIRST_AIRED")
 	private LocalDate firstAired; // The date the season was first aired
 	
+	@OneToOne // One season has only one merge tribe
+	@JoinColumn(name = "TRIBE_ID")
+	private MergeTribes mergeTribe;
+	
 	/**
 	 * This is the default, no argument constructor.
 	 */
@@ -49,6 +55,22 @@ public class Seasons {
 		setSeasonName(name);
 		setSeasonWinner(winner);
 		setFirstAired(startDate);
+	}
+	
+	/**
+	 * This is the nondefault constructor that sets all fields of this entity.
+	 * @param number - the season number
+	 * @param name - the season's name
+	 * @param winner - the winner of the season
+	 * @param startDate - the date the season was first aired
+	 * @param mergeTribes - the merge tribe object correpsonding to the particular season
+	 */
+	public Seasons(int number, String name, String winner, LocalDate startDate, MergeTribes mergeTribe) {
+		setSeasonNum(number);
+		setSeasonName(name);
+		setSeasonWinner(winner);
+		setFirstAired(startDate);
+		setMergeTribe(mergeTribe);
 	}
 	
 	// Declaring the needed accessors and mutators
@@ -86,6 +108,14 @@ public class Seasons {
 		this.firstAired = firstAired;
 	}
 
+	public MergeTribes getMergeTribe() {
+		return mergeTribe;
+	}
+
+	public void setMergeTribe(MergeTribes mergeTribe) {
+		this.mergeTribe = mergeTribe;
+	}
+
 	/**
 	 * This is a helper method used for debugging purposes.
 	 * @return the details for each specified field in this entity in a single line
@@ -93,6 +123,6 @@ public class Seasons {
 	@Override
 	public String toString() {
 		return "Seasons [ID: " + seasonId + " Season #" + seasonNum + ", Name: " + seasonName + ", Winner: " + seasonWinner
-				+ ", First Aired: " + firstAired + "]";
+				+ ", First Aired: " + firstAired + ", MergeTribe: " + mergeTribe + "]";
 	}
 }
