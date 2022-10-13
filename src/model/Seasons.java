@@ -2,13 +2,17 @@ package model; // Tha package where this entity is located at
 
 // Including the needed imports
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,9 +37,15 @@ public class Seasons {
 	@Column(name = "SEASON_FIRST_AIRED")
 	private LocalDate firstAired; // The date the season was first aired
 	
-	@OneToOne // One season has only one merge tribe
+	// One season has only one merge tribe, thus 1..1
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "TRIBE_ID")
 	private MergeTribes mergeTribe;
+	
+	// One season can have many players in it, thus 1..n
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "PLAYERS_ID")
+	private List<Players> listOfPlayers;
 	
 	/**
 	 * This is the default, no argument constructor.
@@ -71,6 +81,22 @@ public class Seasons {
 		setSeasonWinner(winner);
 		setFirstAired(startDate);
 		setMergeTribe(mergeTribe);
+	}
+	
+	/**
+	 * This is the nondefault constructor that sets all fields of this entity.
+	 * @param number - the season number
+	 * @param name - the season's name
+	 * @param winner - the winner of the season
+	 * @param startDate - the date the season was first aired
+	 * @param players - the list of players in a given season
+	 */
+	public Seasons(int number, String name, String winner, LocalDate startDate, List<Players> players) {
+		setSeasonNum(number);
+		setSeasonName(name);
+		setSeasonWinner(winner);
+		setFirstAired(startDate);
+		setListOfPlayers(players);
 	}
 	
 	// Declaring the needed accessors and mutators
@@ -116,6 +142,14 @@ public class Seasons {
 		this.mergeTribe = mergeTribe;
 	}
 
+	public List<Players> getListOfPlayers() {
+		return listOfPlayers;
+	}
+
+	public void setListOfPlayers(List<Players> listOfPlayers) {
+		this.listOfPlayers = listOfPlayers;
+	}
+
 	/**
 	 * This is a helper method used for debugging purposes.
 	 * @return the details for each specified field in this entity in a single line
@@ -123,6 +157,6 @@ public class Seasons {
 	@Override
 	public String toString() {
 		return "Seasons [ID: " + seasonId + " Season #" + seasonNum + ", Name: " + seasonName + ", Winner: " + seasonWinner
-				+ ", First Aired: " + firstAired + ", MergeTribe: " + mergeTribe + "]";
+				+ ", First Aired: " + firstAired + ", MergeTribe: " + mergeTribe + ", Players: " + listOfPlayers + "]";
 	}
 }

@@ -29,7 +29,7 @@ public class SeasonsDAO {
 		em.getTransaction().commit();
 		em.close();
 	}
-
+	
 	/**
 	 * This method traverses the "seasons" table's records and adds them to a
 	 * generic list.
@@ -57,9 +57,8 @@ public class SeasonsDAO {
 		em.getTransaction().begin();
 
 		// Using a prameterized query for additional protection
-		TypedQuery<Seasons> typedQuery = em.createQuery(
-				"SELECT	s from Seasons s WHERE s.seasonNum = :selectedSeasonNum",
-				Seasons.class);
+		TypedQuery<Seasons> typedQuery = em
+				.createQuery("SELECT	s from Seasons s WHERE s.seasonNum = :selectedSeasonNum", Seasons.class);
 
 		// Defining the parameters
 		typedQuery.setParameter("selectedSeasonNum", season.getSeasonNum());
@@ -108,7 +107,7 @@ public class SeasonsDAO {
 		em.getTransaction().commit();
 		em.close();
 	}
-
+	
 	/**
 	 * This method closes the entity manager factory as well as any connections
 	 * inititated to the local database.

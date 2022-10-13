@@ -24,7 +24,7 @@ public class MergeTribes {
 
 	@Column(name = "PLAYERS_CNT")
 	private int numOfPlayers; // The number of players in the merge tribe
-
+	
 	/**
 	 * This is the default, no argument constructor.
 	 */
@@ -45,6 +45,16 @@ public class MergeTribes {
 		setNumOfPlayers(playersCount);
 	}
 
+	/**
+	 * This is the nondefault constructor that sets only the name field of this entity and
+	 * auto-generates the primary key.
+	 * 
+	 * @param name         - the merge tribes name
+	 */
+	public MergeTribes(String name) {
+		setTribeName(name);
+	}
+	
 	// Declaring the needed accessors and mutators
 	public int getTribeId() {
 		return tribeId;

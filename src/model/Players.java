@@ -1,13 +1,12 @@
 package model; // The package where this entity is located at
 
+//Including the needed imports
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-// Including the needed imports
 
 @Entity
 @Table(name = "players")

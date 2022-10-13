@@ -49,14 +49,14 @@ public class seasonsTester {
 		System.out.print("Enter the ID of the season to be removed: ");
 		int seasonId = in.nextInt();
 		in.nextLine();
-		
+
 		Seasons toDelete = sh.findSeason(seasonId);
 		sh.deleteSeason(toDelete);
 	}
 
 	private static void editASeason() {
 		System.out.print("Enter the ID of the record you would like to delete: ");
-		
+
 		int seasonId = in.nextInt();
 		Seasons toEdit = sh.findSeason(seasonId);
 
@@ -101,8 +101,9 @@ public class seasonsTester {
 
 	public static void main(String[] args) {
 		// runMenu();
-
-		// Tests for relationships
+		
+		
+		// Testing for a one-to-one relationship
 		MergeTribes chabogoMogo = new MergeTribes("ChabogoMogo", "Portmanteau of Chapera, Saboga, and Mogo Mogo", 9);
 		MergeTribesDAO mth = new MergeTribesDAO();
 		
@@ -112,11 +113,29 @@ public class seasonsTester {
 		Seasons allStars = new Seasons(8, "All Stars", "Amber Brkich", LocalDate.now(), chabogoMogo);
 		
 		sh.insertSeason(allStars);
-		List<Seasons> allSeasons = sh.showAllSeasons();
+
+		System.out.println(sh.showAllSeasons().toString());
 		
-		for(Seasons s : allSeasons) {
-			System.out.println(s.toString());
-		}
+		
+		/**
+		MergeTribes chabogoMogo = new MergeTribes("ChabogoMogo", "Portmanteau of Chapera, Saboga, and Mogo Mogo", 9);
+		
+		Players cameron = new Players("Cameron", "Bernard", 26);
+		Players nichole = new Players("Nichole", "Atkinson", 35);
+		
+		List<Players> theAmazonList = new ArrayList<>();
+		theAmazonList.add(nichole);
+		theAmazonList.add(cameron);
+		
+		SeasonsDAO sh = new SeasonsDAO();
+		Seasons theAmazon = new Seasons(1, "The Amazon", "TonyVlachos", LocalDate.now(), chabogoMogo);
+		theAmazon.setListOfPlayers(theAmazonList);
+		
+		sh.insertSeason(theAmazon);
+		
+		System.out.println(sh.showAllSeasons().toString());
+		**/
+		
 	}
 
 	public static void runMenu() {
