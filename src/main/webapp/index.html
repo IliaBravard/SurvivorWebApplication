@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<!-- Author: Ilia Garrett Bravard 
+	 Date: 10/05/2022
+	 Course: Java II Programming Course -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Transaction Options</title>
+
+    <link rel="icon" href="picture2.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="indexStyle.css" />
+  </head>
+
+  <body>
+    <h1>Choose Your Transaction</h1>
+
+    <form class="container" action="ViewParksServlet" method="post">
+      <div class="add1">Add Seasons</div>
+
+      <div class="add">
+        <a href="addPlayersForSeasonServlet"
+          ><img src="picture6.png" style="width: 50px; height: 50px"
+        /></a>
+      </div>
+
+      <div class="add1">View Seasons</div>
+      <div>
+        <!-- Here I am calling a servlet using a hyperlink -->
+        <input
+          type="image"
+          src="picture6.png"
+          alt="Submit"
+          style="width: 50px; height: 50px"
+        />
+      </div>
+
+      <div class="add1">Create Casts</div>
+
+      <div class="add">
+        <a href="AddParksForPlanServlet"
+          ><img src="picture6.png" style="width: 50px; height: 50px"
+        /></a>
+      </div>
+
+      <div class="add1">View Casts</div>
+
+      <div class="add">
+        <a href="ViewPlansServlet"
+          ><img src="picture6.png" style="width: 50px; height: 50px"
+        /></a>
+      </div>
+    </form>
+
+    <img class="logo" src="picture5.png" style="width: 175px; height: 175px" />
+  </body>
+</html>

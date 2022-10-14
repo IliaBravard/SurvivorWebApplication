@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,6 +20,13 @@
 
       <p>First Aired On:</p>
       <input required type="date" name="date" /><br />
+      
+      <p>Available Players:</p>
+		<select required name="allPlayersToAdd" size="6" multiple>
+			<c:forEach items="${requestScope.allPlayers}" var="currentplayer">
+				<option value="${currentplayer.playerId}">${currentplayer.firstName} &#11162 ${currentplayer.lastName} &#11162 ${currentplayer.age}</option>
+			</c:forEach>
+		</select>
 
       <input type="submit" value="Add Season" />
     </form>

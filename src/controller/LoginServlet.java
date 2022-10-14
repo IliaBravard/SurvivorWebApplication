@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 
 		// Checking whether the login credentials are valid
 		if (userName.equals("Survivor") && password.equals("AdminAccess@2022")) {
-			path = "/addPlayer.html"; // Allow him/her in
+			path = "/index.html"; // Allow him/her in
 		} else {
 			path = "/login.html"; // Try again
 		}

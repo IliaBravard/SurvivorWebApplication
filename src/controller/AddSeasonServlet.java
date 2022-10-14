@@ -3,6 +3,8 @@ package controller; // The package where this servlet is located at
 // Including the needed imports
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Players;
 import model.Seasons;
 
 /**
@@ -38,6 +41,7 @@ public class AddSeasonServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		PlayersDAO ph = new PlayersDAO();
 		
 		// Getting the input from the user
 		String seasonStringNum = request.getParameter("number");
@@ -49,12 +53,28 @@ public class AddSeasonServlet extends HttpServlet {
 		int seasonNum = Integer.parseInt(seasonStringNum);
 		LocalDate firstAired = LocalDate.parse(dateString);
 		
+		String[] selectedPlayers = request.getParameterValues("allPlayersToAdd");
+		
+		// Adding the array items to a list
+		List<Players> selectedPlayersInList = new ArrayList<Players>();
+		
+		for(String s : selectedPlayers) {
+			System.out.println(s); /* Diagnostic */
+			Players p = ph.findPlayer(Integer.parseInt(s));
+			
+			selectedPlayersInList.add(p);
+		}
+		
 		// Actually adding the new season
 		Seasons toAdd = new Seasons(seasonNum, seasonName, seasonWinner, firstAired);
+		toAdd.setListOfPlayers(selectedPlayersInList);
+		
 		SeasonsDAO sh = new SeasonsDAO();
 		sh.insertSeason(toAdd);
 		
+		System.out.println(toAdd.toString()); /* Diagnostic */
+		
 		// Forwarding the request to the appropriate page
-		getServletContext().getRequestDispatcher("/addSeason.html").forward(request, response);
+		getServletContext().getRequestDispatcher("/viewAllSeasonsServlet").forward(request, response);
 	}
 }
