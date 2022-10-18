@@ -8,9 +8,11 @@ import javax.persistence.EntityManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 // Provides access to the "MergeTRibes" entity
 import model.MergeTribes;
+import model.Seasons;
 
 public class MergeTribesDAO {
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SurvivorWebApplication");
@@ -34,11 +36,24 @@ public class MergeTribesDAO {
 	 * 
 	 * @param tribe - the merge tribe record to be removed from the table
 	 */
-	public void deleteMergeTribe(int mTribeId) {
+	public void deleteMergeTribe(MergeTribes tribe) {
+		// To avoid magic numbers
+		final int ONE_RESULT = 1;
+
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 
-		MergeTribes toDelete = em.find(MergeTribes.class, mTribeId);
+		// Using a prameterized query for additional protection
+		TypedQuery<MergeTribes> typedQuery = em.createQuery("SELECT	t from MergeTribes t WHERE t.tribeName = :selectedTribeName", MergeTribes.class);
+
+		// Defining the parameters
+		typedQuery.setParameter("selectedTribeName", tribe.getTribeName());
+
+		// Getting only a single season/record to be removed
+		typedQuery.setMaxResults(ONE_RESULT);
+
+		// Save the foung record as a new object
+		MergeTribes toDelete = typedQuery.getSingleResult();
 
 		// Persist and remove the object/record
 		em.remove(toDelete);
@@ -57,6 +72,23 @@ public class MergeTribesDAO {
 		@SuppressWarnings("unchecked") // Suppresses the warning for the JPQL statement
 		List<MergeTribes> allTribes = em.createQuery("SELECT mt FROM MergeTribes mt").getResultList();
 		return allTribes;
+	}
+	
+	/**
+	 * This method finds a season record from the "seasons" table by using the
+	 * primary key of each row as the search parameter.
+	 * 
+	 * @param season - the ID number of each record
+	 * @return the found season record in the table
+	 */
+	public MergeTribes findTribe(int tribe) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+
+		// Finding the season to be updated by its ID number
+		MergeTribes toEditOrDelete = em.find(MergeTribes.class, tribe);
+		em.close();
+		return toEditOrDelete;
 	}
 
 	/**

@@ -34,14 +34,6 @@ public class mergeTribesTester {
 		}
 	}
 
-	private static void deleteAMergeTribe() {
-		System.out.print("Enter the ID of the tribe to be removed: ");
-		int mTribeId = in.nextInt();
-		in.nextLine();
-
-		mth.deleteMergeTribe(mTribeId);
-	}
-
 	public static void main(String[] args) {
 		runMenu();
 
@@ -54,7 +46,6 @@ public class mergeTribesTester {
 			System.out.println("*  Select your option:");
 			System.out.println("*  1 -- Add a merge tribe");
 			System.out.println("*  2 -- View all tribes");
-			System.out.println("*  3 -- Delete a merge tribe");
 			System.out.print("*  Your selection: ");
 			int selection = in.nextInt();
 			in.nextLine();
@@ -63,8 +54,6 @@ public class mergeTribesTester {
 				addAMergeTribe();
 			} else if (selection == 2) {
 				viewTheTribes();
-			} else if (selection == 3) {
-				deleteAMergeTribe();
 			} else {
 				mth.cleanUp();
 				System.out.println("   Goodbye!   ");

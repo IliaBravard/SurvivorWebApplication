@@ -1,4 +1,4 @@
-package controller; // The package where this servlet is located at
+package controller; // The package where this servlet class is located at
 
 /**
  * @author Max Chance
@@ -6,7 +6,7 @@ package controller; // The package where this servlet is located at
  * Oct 5, 2022
  */
 
-// Including the needed imports
+// Including the needed imports for this servlet class
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ViewAllSeasonsServlet. This servlet class
- * displays all records within the "seasons" table, if any.
+ * Servlet implementation class AddParksForPlanServlet. This servlet class
+ * gathers all items from the database and puts them on a travel plan.
  */
-@WebServlet("/viewAllSeasonsServlet")
-public class ViewAllSeasonsServlet extends HttpServlet {
+@WebServlet("/addSeasonForMergeTribeServlet")
+public class AddSeasonForMergeTribeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -27,40 +27,42 @@ public class ViewAllSeasonsServlet extends HttpServlet {
 	 * 
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ViewAllSeasonsServlet() {
+	public AddSeasonForMergeTribeServlet() {
 		super();
 	}
 
 	/**
-	 * This method retrieves all records from the "seasons" table and stores them in
-	 * a specified attribute.
+	 * This method persists the 'MTRIBESe' entity and sends the found records to
+	 * an attribute to be later used in a JSP page.
 	 * 
 	 * @param request  - the HTTP request
 	 * @param response - the HTTP response
+	 * @throws ServletException, IOException
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		SeasonsDAO sh = new SeasonsDAO();
+
 		request.setAttribute("allSeasons", sh.showAllSeasons());
 
-		String path = "/seasonsList.jsp";
-
-		// If no records exist in the "seasons" table, asks the user to add some
-		if (sh.showAllSeasons().isEmpty()) {
-			path = "/addSeason.html";
+		if (sh.showAllSeasons().isEmpty()) { // If the access object is empty, the 'allParks' attribute is set to
+												// an empty string
+			request.setAttribute("allSeasons", "");
 		}
 
-		// FOrwarding the request to the appropriate page
-		getServletContext().getRequestDispatcher(path).forward(request, response);
+		// Forwarding the request to the appropriate page
+		getServletContext().getRequestDispatcher("/addMergeTribe.jsp").forward(request, response);
 	}
 
 	/**
-	 * This method calls the doGet() method when the request has been received.
+	 * This method sends the user request to the doGet() method.
 	 * 
 	 * @param request  - the HTTP request
-	 * @param repsonse - the HTTP response
+	 * @param response - the HTTP response
+	 * @throws ServletException, IOException
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

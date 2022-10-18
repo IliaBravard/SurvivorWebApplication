@@ -156,7 +156,6 @@ public class Seasons {
 	 */
 	@Override
 	public String toString() {
-		return "Seasons [ID: " + seasonId + " Season #" + seasonNum + ", Name: " + seasonName + ", Winner: " + seasonWinner
-				+ ", First Aired: " + firstAired + ", MergeTribe: " + mergeTribe + ", Players: " + listOfPlayers + "]";
+		return "Season " + seasonNum + " - " + seasonName;
 	}
 }

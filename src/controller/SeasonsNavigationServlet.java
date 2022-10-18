@@ -60,5 +60,4 @@ public class SeasonsNavigationServlet extends HttpServlet {
 		// Forwarding the request to the appropriate page
 		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
-
 }
