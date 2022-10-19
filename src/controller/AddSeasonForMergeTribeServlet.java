@@ -1,12 +1,12 @@
 package controller; // The package where this servlet class is located at
 
 /**
- * @author Max Chance
+ * @author Ilia Bravard - igbravard
  * CIS175 - Fall 2022
- * Oct 5, 2022
+ * Oct 20, 2022
  */
 
-// Including the needed imports for this servlet class
+// Including the needed imports
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class AddParksForPlanServlet. This servlet class
- * gathers all items from the database and puts them on a travel plan.
+ * gathers all seasons from the database and puts them on the add merge tribes
+ * page.
  */
 @WebServlet("/addSeasonForMergeTribeServlet")
 public class AddSeasonForMergeTribeServlet extends HttpServlet {
@@ -32,7 +33,7 @@ public class AddSeasonForMergeTribeServlet extends HttpServlet {
 	}
 
 	/**
-	 * This method persists the 'MTRIBESe' entity and sends the found records to
+	 * This method persists the 'Merge Tribes' entity and sends the found records to
 	 * an attribute to be later used in a JSP page.
 	 * 
 	 * @param request  - the HTTP request
@@ -43,12 +44,12 @@ public class AddSeasonForMergeTribeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		SeasonsDAO sh = new SeasonsDAO();
 
 		request.setAttribute("allSeasons", sh.showAllSeasons());
 
-		if (sh.showAllSeasons().isEmpty()) { // If the access object is empty, the 'allParks' attribute is set to
+		if (sh.showAllSeasons().isEmpty()) { // If the access object is empty, the 'allSeasons' attribute is set to
 												// an empty string
 			request.setAttribute("allSeasons", "");
 		}

@@ -1,4 +1,10 @@
-package controller; // The package where this servet is located at
+package controller; // The package where this servlet class is located at
+
+/**
+ * @author Ilia Bravard - igbravard
+ * CIS175 - Fall 2022
+ * Oct 20, 2022
+ */
 
 // Including the needed imports
 import java.io.IOException;
@@ -8,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// Provides access to the "Players" entity
+// Allows access to the specified entity
 import model.Players;
 
 /**
@@ -31,7 +37,7 @@ public class PlayersNavigationServlet extends HttpServlet {
 
 	/**
 	 * This method determines what should be done when the user either presses the
-	 * "delete" or "edit" button.
+	 * "delete" or "edit" buttons.
 	 * 
 	 * @param request  - the HTTP request
 	 * @param response - the HTTP response
@@ -44,22 +50,30 @@ public class PlayersNavigationServlet extends HttpServlet {
 		String perform = request.getParameter("doThisToPlayer");
 		String path = "/viewAllPlayersServlet";
 
-		// If the user chose to delete a season, ...
+		// If the user chose to delete a player, ...
 		if (perform.equals("delete")) {
 
 			// Parse the string to an integer
 			Integer tempId = Integer.parseInt(request.getParameter("id"));
 			Players playerToDelete = ph.findPlayer(tempId);
 			ph.deletePlayer(playerToDelete); // Delete the record
-		} else if (perform.equals("edit")) {
+		}
+
+		// Else if the user chose to edit a player, ...
+		else if (perform.equals("edit")) {
 			Integer tempId = Integer.parseInt(request.getParameter("id"));
 			Players playerToEdit = ph.findPlayer(tempId);
 			request.setAttribute("playerToEdit", playerToEdit);
 			path = "/editPlayer.jsp";
 		}
 
+		// Else if the user chose to exit the app, ...
+		else if (perform.equals("exit")) {
+			ph.cleanUp(); // Clean up, if needed
+			path = "/exit.html";
+		}
+
 		// Forwarding the request to the appropriate page
 		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
-
 }

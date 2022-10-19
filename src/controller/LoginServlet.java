@@ -1,12 +1,12 @@
-package controller; // The package where this class is located at
+package controller; // The package where this servlet class is located at
 
 /**
  * @author Ilia Bravard - igbravard
  * CIS175 - Fall 2022
- * Oct 5, 2022
+ * Oct 20, 2022
  */
 
-// Including the needed imports for this servlet class
+// Including the needed imports
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class LoginServlet. This servlet class checks the
- * user's login credentials and lets him/her to the database application.
+ * user's login credentials and lets him/her in to the database application.
  */
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {

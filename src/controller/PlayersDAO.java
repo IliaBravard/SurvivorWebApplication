@@ -1,5 +1,12 @@
-package controller;
+package controller; // The package where this DAO class is located at
 
+/**
+ * @author Ilia Bravard - igbravard
+ * CIS175 - Fall 2022
+ * Oct 20, 2022
+ */
+
+// Including the needed imports
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,14 +14,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-// Provides access to the "Players" entity
+// Allows access to the specified entity
 import model.Players;
-
-// The package where this DAO is located at
 
 public class PlayersDAO {
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SurvivorWebApplication");
-	
+
 	/**
 	 * This method inserts a player record to the "players" table.
 	 * 
@@ -32,7 +37,7 @@ public class PlayersDAO {
 	 * This method traverses the "players" table's records and adds them to a
 	 * generic list.
 	 * 
-	 * @return a list populated with all existing records in the table
+	 * @return a list populated with all existing player records in the table
 	 */
 	public List<Players> showAllPlayers() {
 		EntityManager em = emfactory.createEntityManager();
@@ -40,7 +45,7 @@ public class PlayersDAO {
 		List<Players> allPlayers = em.createQuery("SELECT p FROM Players p").getResultList();
 		return allPlayers;
 	}
-	
+
 	/**
 	 * This method searches for a particular player record from the "players" table
 	 * and deletes it permanently from the database.
@@ -54,7 +59,7 @@ public class PlayersDAO {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 
-		// Using a prameterized query for additional protection
+		// Using a parameterized query for additional protection
 		TypedQuery<Players> typedQuery = em.createQuery(
 				"SELECT	p from Players p WHERE p.firstName = :selectedFirstName	AND	p.lastName = :selectedLastName",
 				Players.class);
@@ -63,18 +68,18 @@ public class PlayersDAO {
 		typedQuery.setParameter("selectedFirstName", player.getFirstName());
 		typedQuery.setParameter("selectedLastName", player.getLastName());
 
-		// Getting only a single season/record to be removed
+		// Getting only a single player/record to be removed
 		typedQuery.setMaxResults(ONE_RESULT);
 
-		// Save the foung record as a new object
+		// Saving the found record as a new object
 		Players toDelete = typedQuery.getSingleResult();
 
-		// Persist and remove the object/record
+		// Persisting and removing the object/record
 		em.remove(toDelete);
 		em.getTransaction().commit();
 		em.close();
 	}
-	
+
 	/**
 	 * This method finds a player record from the "players" table by using the
 	 * primary key of each row as the search parameter.
@@ -86,12 +91,12 @@ public class PlayersDAO {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 
-		// Finding the season to be updated by its ID number
+		// Finding the player to be updated by its ID number
 		Players toEdit = em.find(Players.class, player);
 		em.close();
 		return toEdit;
 	}
-	
+
 	/**
 	 * This method updates a player record from the "players" table.
 	 * 
@@ -110,9 +115,11 @@ public class PlayersDAO {
 
 	/**
 	 * This method closes the entity manager factory as well as any connections
-	 * inititated to the local database.
+	 * initiated to the local database, if any.
 	 */
 	public void cleanUp() {
-		emfactory.close();
+		if (emfactory.isOpen()) {
+			emfactory.close();
+		}
 	}
 }

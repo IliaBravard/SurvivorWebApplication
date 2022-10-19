@@ -1,4 +1,10 @@
-package controller; // The package where this converter is located at
+package controller; // The package where this converter class is located at
+
+/**
+ * @author Ilia Bravard - igbravard
+ * CIS175 - Fall 2022
+ * Oct 20, 2022
+ */
 
 // Including the needed imports
 import java.sql.Date;
@@ -14,6 +20,7 @@ import javax.persistence.Converter;
  * to accomplish the given task.
  */
 
+// The annotation used to treat this class as a converter
 @Converter(autoApply = true)
 public class LocalDateAttributeConverter implements AttributeConverter<LocalDate, Date> {
 

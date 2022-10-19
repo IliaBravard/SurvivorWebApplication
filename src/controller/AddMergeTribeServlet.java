@@ -1,9 +1,9 @@
 package controller; // The package where this servlet is located at
 
 /**
- * @author Max Chance
+ * @author Ilia Bravard - igbravard
  * CIS175 - Fall 2022
- * Oct 5, 2022
+ * Oct 20, 2022
  */
 
 // Including the needed imports
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// Allows access to the specified entities
 import model.MergeTribes;
 import model.Seasons;
 

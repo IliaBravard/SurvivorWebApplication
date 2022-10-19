@@ -1,18 +1,21 @@
-package controller;
+package controller; // The package where this DAO class is located at
 
+/**
+ * @author Ilia Bravard - igbravard
+ * CIS175 - Fall 2022
+ * Oct 20, 2022
+ */
+
+// Including the needed imports
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
-// The package where this DAO is located at
-
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-// Provides access to the "MergeTRibes" entity
+// Allows access to the specified entity
 import model.MergeTribes;
-import model.Seasons;
 
 public class MergeTribesDAO {
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("SurvivorWebApplication");
@@ -20,7 +23,7 @@ public class MergeTribesDAO {
 	/**
 	 * This method inserts a merge tribe record to the "mtribes" table.
 	 * 
-	 * @param player - the player to be inserted in the table
+	 * @param tribe - the tribe to be inserted in the table
 	 */
 	public void insertMergeTribe(MergeTribes tribe) {
 		EntityManager em = emfactory.createEntityManager();
@@ -43,19 +46,20 @@ public class MergeTribesDAO {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 
-		// Using a prameterized query for additional protection
-		TypedQuery<MergeTribes> typedQuery = em.createQuery("SELECT	t from MergeTribes t WHERE t.tribeName = :selectedTribeName", MergeTribes.class);
+		// Using a parameterized query for additional protection
+		TypedQuery<MergeTribes> typedQuery = em.createQuery(
+				"SELECT	t from MergeTribes t WHERE t.tribeName = :selectedTribeName", MergeTribes.class);
 
 		// Defining the parameters
 		typedQuery.setParameter("selectedTribeName", tribe.getTribeName());
 
-		// Getting only a single season/record to be removed
+		// Getting only a single merge tribe/record to be removed
 		typedQuery.setMaxResults(ONE_RESULT);
 
-		// Save the foung record as a new object
+		// Saving the found record as a new object
 		MergeTribes toDelete = typedQuery.getSingleResult();
 
-		// Persist and remove the object/record
+		// Persisting and removing the object/record
 		em.remove(toDelete);
 		em.getTransaction().commit();
 		em.close();
@@ -65,7 +69,7 @@ public class MergeTribesDAO {
 	 * This method traverses the "mtribes" table's records and adds them to a
 	 * generic list.
 	 * 
-	 * @return a list populated with all existing records in the table
+	 * @return a list populated with all existing tribe records in the table
 	 */
 	public List<MergeTribes> showAllTribes() {
 		EntityManager em = emfactory.createEntityManager();
@@ -73,19 +77,19 @@ public class MergeTribesDAO {
 		List<MergeTribes> allTribes = em.createQuery("SELECT mt FROM MergeTribes mt").getResultList();
 		return allTribes;
 	}
-	
+
 	/**
-	 * This method finds a season record from the "seasons" table by using the
+	 * This method finds a tribe record from the "mtribes" table by using the
 	 * primary key of each row as the search parameter.
 	 * 
-	 * @param season - the ID number of each record
-	 * @return the found season record in the table
+	 * @param tribe - the ID number of each record
+	 * @return the found tribe record in the table
 	 */
 	public MergeTribes findTribe(int tribe) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 
-		// Finding the season to be updated by its ID number
+		// Finding the merge tribe to be updated by its ID number
 		MergeTribes toEditOrDelete = em.find(MergeTribes.class, tribe);
 		em.close();
 		return toEditOrDelete;
@@ -93,9 +97,11 @@ public class MergeTribesDAO {
 
 	/**
 	 * This method closes the entity manager factory as well as any connections
-	 * inititated to the local database.
+	 * initiated to the local database, if any.
 	 */
 	public void cleanUp() {
-		emfactory.close();
+		if(emfactory.isOpen()) {
+			emfactory.close();
+		}
 	}
 }

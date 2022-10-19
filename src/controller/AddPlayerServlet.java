@@ -1,5 +1,11 @@
 package controller; // The package where this servlet is located at
 
+/**
+ * @author Ilia Bravard - igbravard
+ * CIS175 - Fall 2022
+ * Oct 20, 2022
+ */
+
 // Including the needed imports
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// Provides access to the "Players" entity
+// Allows access to the specified entity
 import model.Players;
 
 /**
@@ -32,7 +38,7 @@ public class AddPlayerServlet extends HttpServlet {
 	 * This method adds a new player record to the "players" table.
 	 * 
 	 * @param request  - the HTTP request
-	 * @param response - the HTTP reposnse
+	 * @param response - the HTTP response
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -46,12 +52,12 @@ public class AddPlayerServlet extends HttpServlet {
 		// Parsing the age to an integer
 		int castingAge = Integer.parseInt(request.getParameter("castAge"));
 
-		// Actually adding the new season
+		// Actually adding the new player
 		Players toAdd = new Players(fName, lName, castingAge);
 		PlayersDAO ph = new PlayersDAO();
 		ph.insertPlayer(toAdd);
 
-		// Forwarding the request to the apropriate page
+		// Forwarding the request to the appropriate page
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 	}
 }

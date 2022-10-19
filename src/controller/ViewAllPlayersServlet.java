@@ -1,4 +1,10 @@
-package controller; // The package where this servlet is located at
+package controller; // The package where this servlet class is located at
+
+/**
+ * @author Ilia Bravard - igbravard
+ * CIS175 - Fall 2022
+ * Oct 20, 2022
+ */
 
 // Including the needed imports
 import java.io.IOException;
@@ -9,15 +15,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ViewAllPlayersServlet. THis servlet class
- * displays all records within the "players" entity, if any.
+ * Servlet implementation class ViewAllPlayersServlet. This servlet class
+ * displays all records from the "players" table, if any.
  */
 @WebServlet("/viewAllPlayersServlet")
 public class ViewAllPlayersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * This is the default, no argument construcrtor.
+	 * This is the default, no argument constructor.
 	 * 
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -27,7 +33,7 @@ public class ViewAllPlayersServlet extends HttpServlet {
 
 	/**
 	 * This method retrieves all records from the "players" table and stores them in
-	 * a specified attribute.
+	 * the specified attribute.
 	 * 
 	 * @param request  - the HTTP request
 	 * @param response - the HTTP response
@@ -47,7 +53,7 @@ public class ViewAllPlayersServlet extends HttpServlet {
 	 * This method calls the doGet() method when the request has been received.
 	 * 
 	 * @param request  - the HTTP request
-	 * @param repsonse - the HTTP response
+	 * @param response - the HTTP response
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
