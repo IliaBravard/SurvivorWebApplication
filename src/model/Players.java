@@ -1,6 +1,12 @@
-package model; // The package where this entity is located at
+package model; // The package where this POJO class is located at
 
-//Including the needed imports
+/**
+ * @author Ilia Bravard - igbravard
+ * CIS175 - Fall 2022
+ * Oct 20, 2022
+ */
+
+// Including the needed imports
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

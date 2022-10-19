@@ -1,4 +1,10 @@
-package model; // Tha package where this entity is located at
+package model; // The package where this POJO class is located at
+
+/**
+ * @author Ilia Bravard - igbravard
+ * CIS175 - Fall 2022
+ * Oct 20, 2022
+ */
 
 // Including the needed imports
 import java.time.LocalDate;
@@ -54,7 +60,7 @@ public class Seasons {
 	}
 
 	/**
-	 * This is the nondefault constructor that sets all fields of this entity.
+	 * This is the nondefault constructor that sets some fields of this entity.
 	 * 
 	 * @param number    - the season number
 	 * @param name      - the season's name
@@ -69,13 +75,14 @@ public class Seasons {
 	}
 
 	/**
-	 * This is the nondefault constructor that sets all fields of this entity.
+	 * This is the nondefault constructor that sets some fields of this entity,
+	 * including the tribe field.
 	 * 
 	 * @param number      - the season number
 	 * @param name        - the season's name
 	 * @param winner      - the winner of the season
 	 * @param startDate   - the date the season was first aired
-	 * @param mergeTribes - the merge tribe object correpsonding to the particular
+	 * @param mergeTribes - the merge tribe object corresponding to the particular
 	 *                    season
 	 */
 	public Seasons(int number, String name, String winner, LocalDate startDate, MergeTribes mergeTribe) {
@@ -87,7 +94,8 @@ public class Seasons {
 	}
 
 	/**
-	 * This is the nondefault constructor that sets all fields of this entity.
+	 * This is the nondefault constructor that sets some fields of this entity,
+	 * including the players field.
 	 * 
 	 * @param number    - the season number
 	 * @param name      - the season's name

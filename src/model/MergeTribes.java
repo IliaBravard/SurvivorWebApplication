@@ -1,5 +1,12 @@
-package model; // The package where this entity is located at
+package model; // The package where this POJO class is located at
 
+/**
+ * @author Ilia Bravard - igbravard
+ * CIS175 - Fall 2022
+ * Oct 20, 2022
+ */
+
+// Including the needed imports
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,10 +57,9 @@ public class MergeTribes {
 	}
 
 	/**
-	 * This is the nondefault constructor that sets the fields of this entity and
-	 * auto-generates the primary key.
+	 * This is the nondefault constructor that sets all fields of this entity.
 	 * 
-	 * @param name         - the merge tribes name
+	 * @param name         - the merge tribe's name
 	 * @param meaning      - the meaning of the tribe's name
 	 * @param playersCount - the number of players in the tribe
 	 * @param season       - the season to which the merge tribe belongs to
@@ -69,7 +75,7 @@ public class MergeTribes {
 	 * This is the nondefault constructor that sets only the name field of this
 	 * entity and auto-generates the primary key.
 	 * 
-	 * @param name - the merge tribes name
+	 * @param name - the merge tribe's name
 	 */
 	public MergeTribes(String name) {
 		setTribeName(name);
