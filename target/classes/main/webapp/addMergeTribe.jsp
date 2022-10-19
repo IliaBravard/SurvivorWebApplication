@@ -4,12 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Max Chance -->
 <meta charset="ISO-8859-1" />
-<title>Edit a Season</title>
+<title>Add A Merge Tribe</title>
 <link rel="icon" href="picture2.png" type="image/x-icon" />
+
 <style>
 body {
-	background-image: url("picture6.png");
+	background-image: url("picture9.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	font-family: "montserrat";
@@ -25,7 +27,7 @@ p {
 	justify-content: center;
 	width: 300px;
 	padding-left: 160px;
-	padding-top: 5px;
+	padding-top: 27px;
 }
 
 form {
@@ -46,7 +48,7 @@ form input[type="text"] {
 	transition: 0.25s;
 }
 
-form input[type="number"], input[type="date"] {
+form input[type="number"] {
 	margin-left: 17px;
 	padding: 7px;
 	text-align: center;
@@ -61,12 +63,12 @@ form input[type="number"], input[type="date"] {
 
 form input[type="text"]:focus, form input[type="number"]:focus {
 	width: 320px;
-	border-color: rgb(144, 229, 115);
+	border-color: #ffdd7d;
 	outline: none;
 }
 
-form input[type="date"]:focus, select:focus {
-	border-color: rgb(144, 229, 115);
+form select:focus {
+	border-color: #ffdd7d;
 	outline: none;
 }
 
@@ -85,12 +87,12 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-	background: #ac9187;
+	background: #ffdd7d;
 	border-style: none;
 	border-color: rgb(247, 212, 138);
 	font-size: 20px;
 	transition: all 0.6s ease;
-	color: white;
+	color: black;
 }
 
 form select {
@@ -105,41 +107,29 @@ form select {
 	text-align: center;
 }
 
-::-webkit-calendar-picker-indicator {
-	filter: invert(1);
-}
 </style>
-
 </head>
 <body>
-	<div class="container">
-		<form action="editSeasonServlet" method="post" autocomplete="off">
-			<p>New Season Number</p>
-			<input required type="number" name="number"
-				value="${seasonToEdit.seasonNum}" />
+<div class="container">
+	<form action="addMergeTribeServlet" method="post" autocomplete="off">
+		<p>Tribe Name:</p>
+		<input required type="text" name="name" />
 
-			<p>New Season Name:</p>
-			<input required type="text" name="name"
-				value="${seasonToEdit.seasonName}" />
+		<p>Name Meaning:</p>
+		<input required type="text" name="meaning" />
 
-			<p>New Season Winner:</p>
-			<input required type="text" name="winner"
-				value="${seasonToEdit.seasonWinner}" />
+		<p>Number Of Players:</p>
+		<input required type="number" name="players" min="1" max="20" />
 
-			<p>Update the Release Date:</p>
-			<input required type="date" name="date"
-				value="${seasonToEdit.firstAired}" /> <input type="hidden"
-				name="id" value="${seasonToEdit.seasonId}" />
-
-			<p>New Players:</p>
-			<select required name="allPlayersToAdd" size="3" multiple>
-				<c:forEach items="${requestScope.allPlayers}" var="currentplayer">
-					<option value="${currentplayer.playerId}">${currentplayer.firstName}
-						${currentplayer.lastName} &#11162 ${currentplayer.age}</option>
-				</c:forEach>
-			</select> <br>
-			<input type="submit" value="Save" />
-		</form>
+		<p>Available Seasons:</p>
+		<select required name="seasonToAdd" size="6">
+			<c:forEach items="${requestScope.allSeasons}" var="currentseason">
+				<option value="${currentseason.seasonId}">${currentseason.seasonNum}
+					&#11162 ${currentseason.seasonName}</option>
+			</c:forEach>
+		</select> <input type="submit" value="Add Tribe" />
+	</form>
 	</div>
+	<br />
 </body>
 </html>

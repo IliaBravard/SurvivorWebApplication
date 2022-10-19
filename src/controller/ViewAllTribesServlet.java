@@ -1,5 +1,11 @@
 package controller; // The package where this servlet is located at
 
+/**
+ * @author Max Chance
+ * CIS175 - Fall 2022
+ * Oct 5, 2022
+ */
+
 // Including the needed imports
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,24 +15,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ViewAllPlayersServlet. THis servlet class
- * displays all records within the "players" entity, if any.
+ * Servlet implementation class ViewAllSeasonsServlet. This servlet class
+ * displays all records within the "seasons" table, if any.
  */
-@WebServlet("/viewAllPlayersServlet")
-public class ViewAllPlayersServlet extends HttpServlet {
+@WebServlet("/viewAllTribesServlet")
+public class ViewAllTribesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * This is the default, no argument construcrtor.
+	 * This is the default, no argument constructor.
 	 * 
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ViewAllPlayersServlet() {
+	public ViewAllTribesServlet() {
 		super();
 	}
 
 	/**
-	 * This method retrieves all records from the "players" table and stores them in
+	 * This method retrieves all records from the "seasons" table and stores them in
 	 * a specified attribute.
 	 * 
 	 * @param request  - the HTTP request
@@ -36,11 +42,11 @@ public class ViewAllPlayersServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		PlayersDAO ph = new PlayersDAO();
-		request.setAttribute("allPlayers", ph.showAllPlayers());
+		MergeTribesDAO mth = new MergeTribesDAO();
+		request.setAttribute("allTribes", mth.showAllTribes());
 
 		// Forwarding the request to the appropriate page
-		getServletContext().getRequestDispatcher("/playersList.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/tribesList.jsp").forward(request, response);
 	}
 
 	/**

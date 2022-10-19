@@ -25,10 +25,10 @@ public class MergeTribes {
 
 	@Column(name = "PLAYERS_CNT")
 	private int numOfPlayers; // The number of players in the merge tribe
-	
+
 	@JoinColumn(name = "SEASON")
 	private Seasons season; // The season to which the merge tribe belongs to
-	
+
 	/**
 	 * This is the default, no argument constructor.
 	 */
@@ -56,7 +56,7 @@ public class MergeTribes {
 	 * @param name         - the merge tribes name
 	 * @param meaning      - the meaning of the tribe's name
 	 * @param playersCount - the number of players in the tribe
-	 * @param season - the season to which the merge tribe belongs to
+	 * @param season       - the season to which the merge tribe belongs to
 	 */
 	public MergeTribes(String name, String meaning, int playersCount, Seasons season) {
 		setTribeName(name);
@@ -64,17 +64,17 @@ public class MergeTribes {
 		setNumOfPlayers(playersCount);
 		setSeason(season);
 	}
-	
+
 	/**
-	 * This is the nondefault constructor that sets only the name field of this entity and
-	 * auto-generates the primary key.
+	 * This is the nondefault constructor that sets only the name field of this
+	 * entity and auto-generates the primary key.
 	 * 
-	 * @param name         - the merge tribes name
+	 * @param name - the merge tribes name
 	 */
 	public MergeTribes(String name) {
 		setTribeName(name);
 	}
-	
+
 	// Declaring the needed accessors and mutators
 	public int getTribeId() {
 		return tribeId;

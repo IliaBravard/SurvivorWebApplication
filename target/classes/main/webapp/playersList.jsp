@@ -43,7 +43,8 @@
     </table>
     <input type = "submit" value = "edit" name="doThisToPlayer" class="btn btn-warning">
     <input type = "submit" value = "delete" name="doThisToPlayer" class="btn btn-danger">
-    <a href = "addPlayer.html"><input type = "button" value = "add" class="btn btn-success"></a>
+    <a href = "index.html"><input type = "button" value = "add" class="btn btn-success"></a>
+    <a href = "exit.html"><input type = "button" value = "exit" class="btn btn-info"></a>
     </form>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

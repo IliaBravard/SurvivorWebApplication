@@ -52,6 +52,6 @@ public class AddPlayerServlet extends HttpServlet {
 		ph.insertPlayer(toAdd);
 
 		// Forwarding the request to the apropriate page
-		getServletContext().getRequestDispatcher("/addPlayer.html").forward(request, response);
+		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 	}
 }

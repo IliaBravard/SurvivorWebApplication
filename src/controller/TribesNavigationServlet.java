@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.MergeTribes;
 // Provides access to the "Seasons" entity
 import model.Seasons;
 
@@ -16,8 +17,8 @@ import model.Seasons;
  * the user to the appropriate page based on the operation chosen to be
  * performed for each season record.
  */
-@WebServlet("/seasonsNavigationServlet")
-public class SeasonsNavigationServlet extends HttpServlet {
+@WebServlet("/tribesNavigationServlet")
+public class TribesNavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,7 +26,7 @@ public class SeasonsNavigationServlet extends HttpServlet {
 	 * 
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SeasonsNavigationServlet() {
+	public TribesNavigationServlet() {
 		super();
 	}
 
@@ -40,23 +41,14 @@ public class SeasonsNavigationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		SeasonsDAO sh = new SeasonsDAO();
-		String perform = request.getParameter("doThisToSeason");
-		String path = "/viewAllSeasonsServlet";
+		MergeTribesDAO mth = new MergeTribesDAO();
+		String path = "/viewAllTribesServlet";
 
-		// If the user chose to delete a season, ...
-		if (perform.equals("delete")) {
+		// Parse the string to an integer
+		Integer tempId = Integer.parseInt(request.getParameter("id"));
+		MergeTribes tribeToDelete = mth.findTribe(tempId);
+		mth.deleteMergeTribe(tribeToDelete); // Delete the record
 
-			// Parse the string to an integer
-			Integer tempId = Integer.parseInt(request.getParameter("id"));
-			Seasons seasonToDelete = sh.findSeason(tempId);
-			sh.deleteSeason(seasonToDelete); // Delete the record
-		} else if (perform.equals("edit")) {
-			Integer tempId = Integer.parseInt(request.getParameter("id"));
-			Seasons seasonToEdit = sh.findSeason(tempId);
-			request.setAttribute("seasonToEdit", seasonToEdit);
-			path = "/addPlayersForEdit";
-		}
 		// Forwarding the request to the appropriate page
 		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}

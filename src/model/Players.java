@@ -11,32 +11,34 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "players")
 public class Players {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PLAYER_ID")
 	private int playerId; // The primary key
-	
+
 	@Column(name = "FIRST_NAME")
 	private String firstName; // The player's first name
-	
+
 	@Column(name = "LAST_NAME")
 	private String lastName; // The player's last name
-	
+
 	@Column(name = "CAST_AGE")
 	private int age; // The player's age at the time of casting
-	
+
 	/**
 	 * This is the default, no argument constructor.
 	 */
 	public Players() {
 	}
-	
+
 	/**
-	 * This is the nondefault constructor that sets each field of this entity and auto-generates the primary key.
+	 * This is the nondefault constructor that sets each field of this entity and
+	 * auto-generates the primary key.
+	 * 
 	 * @param fName - the player's first name
 	 * @param lName - the player's last name
-	 * @param age - the player's age at the time of casting
+	 * @param age   - the player's age at the time of casting
 	 */
 	public Players(String fName, String lName, int age) {
 		setFirstName(fName);
@@ -79,6 +81,7 @@ public class Players {
 
 	/**
 	 * This is a helper method used for debugging purposes.
+	 * 
 	 * @return the details for each specified field in this entity in a single line
 	 */
 	@Override

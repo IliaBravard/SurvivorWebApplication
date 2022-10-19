@@ -45,15 +45,8 @@ public class ViewAllSeasonsServlet extends HttpServlet {
 		SeasonsDAO sh = new SeasonsDAO();
 		request.setAttribute("allSeasons", sh.showAllSeasons());
 
-		String path = "/seasonsList.jsp";
-
-		// If no records exist in the "seasons" table, asks the user to add some
-		if (sh.showAllSeasons().isEmpty()) {
-			path = "/addSeason.html";
-		}
-
 		// FOrwarding the request to the appropriate page
-		getServletContext().getRequestDispatcher(path).forward(request, response);
+		getServletContext().getRequestDispatcher("/seasonsList.jsp").forward(request, response);
 	}
 
 	/**
