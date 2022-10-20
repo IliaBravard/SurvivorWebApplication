@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 
 <!--
-	Author: Max Chance
-	Date: 10/12/2022
+	Author: Ilia Bravard - igbravard
+	Date: 10/20/2022
 	Course: Advanced Java Programming
  -->
 
@@ -14,7 +14,9 @@
 <head>
 <meta charset="ISO-8859-1" />
 <title>Edit a Player</title>
+
 <link rel="icon" href="picture2.png" type="image/x-icon" />
+
 <style>
 body {
 	background-image: url("picture8.png");
@@ -100,22 +102,22 @@ form input[type="submit"]:hover {
 
 </head>
 <body>
-<div class = "container">
-	<form action="editPlayerServlet" method="post" autocomplete="off">
-		<p>New First Name</p>
-		<input required type="text" name="fName"
-			value="${playerToEdit.firstName}" />
+	<div class="container">
+		<form action="editPlayerServlet" method="post" autocomplete="off">
+			<p>New First Name</p>
+			<input required type="text" name="fName"
+				value="${playerToEdit.firstName}" />
 
-		<p>New Last Name:</p>
-		<input required type="text" name="lName"
-			value="${playerToEdit.lastName}" />
+			<p>New Last Name:</p>
+			<input required type="text" name="lName"
+				value="${playerToEdit.lastName}" />
 
-		<p>New Cast Age:</p>
-		<input required type="number" name="castAge"
-			value="${playerToEdit.age}" /> <input type="hidden" name="id"
-			value="${playerToEdit.playerId}" /> <input type="submit"
-			value="Save" />
-	</form>
+			<p>New Cast Age:</p>
+			<input required type="number" name="castAge"
+				value="${playerToEdit.age}" /> <input type="hidden" name="id"
+				value="${playerToEdit.playerId}" /> <input type="submit"
+				value="Save" />
+		</form>
 	</div>
 </body>
 </html>

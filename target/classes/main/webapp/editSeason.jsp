@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
+
+<!--
+	Author: Ilia Bravard - igbravard
+	Date: 10/20/2022
+	Course: Advanced Java Programming
+ -->
+
 <html>
 <head>
 <meta charset="ISO-8859-1" />
 <title>Edit a Season</title>
+
 <link rel="icon" href="picture2.png" type="image/x-icon" />
+
 <style>
 body {
 	background-image: url("picture6.png");
@@ -137,8 +147,7 @@ form select {
 					<option value="${currentplayer.playerId}">${currentplayer.firstName}
 						${currentplayer.lastName} &#11162 ${currentplayer.age}</option>
 				</c:forEach>
-			</select> <br>
-			<input type="submit" value="Save" />
+			</select> <br> <input type="submit" value="Save" />
 		</form>
 	</div>
 </body>

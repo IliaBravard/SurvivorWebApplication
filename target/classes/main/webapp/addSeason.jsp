@@ -3,6 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
+
+<!--
+	Author: Ilia Bravard - igbravard
+	Date: 10/20/2022
+	Course: Advanced Java Programming
+ -->
+
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1" />
@@ -10,6 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>Add A Season</title>
+
 <link rel="icon" href="picture2.png" type="image/x-icon" />
 
 <style>
@@ -111,34 +119,34 @@ form select {
 }
 
 ::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+	filter: invert(1);
 }
 </style>
 
 </head>
 <body>
-<div class = "container">
-	<form action="addSeasonServlet" method="post" autocomplete="off">
-		<p>Season Number:</p>
-		<input required type="number" name="number" min="1" max="42" />
+	<div class="container">
+		<form action="addSeasonServlet" method="post" autocomplete="off">
+			<p>Season Number:</p>
+			<input required type="number" name="number" min="1" max="42" />
 
-		<p>Season Name:</p>
-		<input required type="text" name="name" />
+			<p>Season Name:</p>
+			<input required type="text" name="name" />
 
-		<p>Season Winner:</p>
-		<input required type="text" name="winner" />
+			<p>Season Winner:</p>
+			<input required type="text" name="winner" />
 
-		<p>First Aired On:</p>
-		<input required type="date" name="date" />
+			<p>First Aired On:</p>
+			<input required type="date" name="date" />
 
-		<p>Available Players:</p>
-		<select required name="allPlayersToAdd" size="3" multiple>
-			<c:forEach items="${requestScope.allPlayers}" var="currentplayer">
-				<option value="${currentplayer.playerId}">${currentplayer.firstName} ${currentplayer.lastName} &#11162 ${currentplayer.age}</option>
-			</c:forEach>
-		</select><br>
-		<input type="submit" value="Add Season" class = "submit"/>
-	</form>
-</div>
+			<p>Available Players:</p>
+			<select required name="allPlayersToAdd" size="3" multiple>
+				<c:forEach items="${requestScope.allPlayers}" var="currentplayer">
+					<option value="${currentplayer.playerId}">${currentplayer.firstName}
+						${currentplayer.lastName} &#11162 ${currentplayer.age}</option>
+				</c:forEach>
+			</select><br> <input type="submit" value="Add Season" class="submit" />
+		</form>
+	</div>
 </body>
 </html>

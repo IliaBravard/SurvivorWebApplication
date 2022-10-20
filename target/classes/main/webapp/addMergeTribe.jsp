@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
+
+<!--
+	Author: Ilia Bravard - igbravard
+	Date: 10/20/2022
+	Course: Advanced Java Programming
+ -->
+
 <html>
 <head>
-<!-- Max Chance -->
 <meta charset="ISO-8859-1" />
 <title>Add A Merge Tribe</title>
+
 <link rel="icon" href="picture2.png" type="image/x-icon" />
 
 <style>
@@ -106,29 +114,28 @@ form select {
 	overflow-y: auto;
 	text-align: center;
 }
-
 </style>
 </head>
 <body>
-<div class="container">
-	<form action="addMergeTribeServlet" method="post" autocomplete="off">
-		<p>Tribe Name:</p>
-		<input required type="text" name="name" />
+	<div class="container">
+		<form action="addMergeTribeServlet" method="post" autocomplete="off">
+			<p>Tribe Name:</p>
+			<input required type="text" name="name" />
 
-		<p>Name Meaning:</p>
-		<input required type="text" name="meaning" />
+			<p>Name Meaning:</p>
+			<input required type="text" name="meaning" />
 
-		<p>Number Of Players:</p>
-		<input required type="number" name="players" min="1" max="20" />
+			<p>Number Of Players:</p>
+			<input required type="number" name="players" min="1" max="20" />
 
-		<p>Available Seasons:</p>
-		<select required name="seasonToAdd" size="6">
-			<c:forEach items="${requestScope.allSeasons}" var="currentseason">
-				<option value="${currentseason.seasonId}">${currentseason.seasonNum}
-					&#11162 ${currentseason.seasonName}</option>
-			</c:forEach>
-		</select> <input type="submit" value="Add Tribe" />
-	</form>
+			<p>Available Seasons:</p>
+			<select required name="seasonToAdd" size="6">
+				<c:forEach items="${requestScope.allSeasons}" var="currentseason">
+					<option value="${currentseason.seasonId}">${currentseason.seasonNum}
+						&#11162 ${currentseason.seasonName}</option>
+				</c:forEach>
+			</select> <input type="submit" value="Add Tribe" />
+		</form>
 	</div>
 	<br />
 </body>
