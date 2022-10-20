@@ -44,12 +44,12 @@ public class Seasons {
 	private LocalDate firstAired; // The date the season was first aired
 
 	// One season has only one merge tribe, thus 1..1
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "TRIBE_ID")
 	private MergeTribes mergeTribe;
 
 	// One season can have many players in it, thus 1..n
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "PLAYERS_ID")
 	private List<Players> listOfPlayers;
 
