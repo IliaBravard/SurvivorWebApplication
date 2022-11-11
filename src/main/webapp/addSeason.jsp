@@ -123,12 +123,22 @@ form select {
 }
 </style>
 
+<script>
+function checkSeason() {
+	let seasonNumber = document.querySelector("#seasonNum").value;
+	console.log("in");
+	if(seasonNumber < 1 || seasonNumber > 42) {
+		alert("The season number must be between 1 and 42!");
+	}
+}
+</script>
+
 </head>
 <body>
 	<div class="container">
 		<form action="addSeasonServlet" method="post" autocomplete="off">
 			<p>Season Number:</p>
-			<input required type="number" name="number" min="1" max="42" />
+			<input required type="number" name="number" id="seasonNum" onblur="checkSeason()"/>
 
 			<p>Season Name:</p>
 			<input required type="text" name="name" />
